@@ -24,7 +24,7 @@ public class MouseLook : MonoBehaviour
         rotationY %= 360;
 		rotationX %= 360;
 
-		Debug.Log ("Rotation X : "+ rotationX);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+		//Debug.Log ("Rotation X : "+ rotationX);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 
 		/*
 		if( rotationX > 40.0f)
