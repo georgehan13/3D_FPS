@@ -9,10 +9,7 @@ public class FireManager : MonoBehaviour
 	public float power = 20.0f;
 	public float ballRotation = Random.Range(-20.0f, 20.0f);
 
-	void Start ()
-	{
-		obj.rigidbody.angularVelocity = cameraTransform * ballRotation;
-	}
+
 	
 	// Update is called once per frame
 	void Update () 
@@ -23,6 +20,7 @@ public class FireManager : MonoBehaviour
 
 			obj.transform.position = firePosition.position;
 			obj.rigidbody.velocity = cameraTransform.forward * power;
+			obj.rigidbody.angularVelocity = new Vector3 (Random.Range(-180.0f, 180.0f),Random.Range(-180.0f, 180.0f),Random.Range(-180.0f, 180.0f));
 		
 		}
 	
