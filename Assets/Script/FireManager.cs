@@ -7,7 +7,7 @@ public class FireManager : MonoBehaviour
 	public GameObject fireObject;
 	public Transform firePosition;
 	public float power = 20.0f;
-	public float ballRotation = Random.Range(10.0f, 20.0f);
+	public float ballRotation = Random.Range(-20.0f, 20.0f);
 
 	
 	// Update is called once per frame
@@ -19,7 +19,7 @@ public class FireManager : MonoBehaviour
 
 			obj.transform.position = firePosition.position;
 			obj.rigidbody.velocity = cameraTransform.forward * power;
-			obj.rigidbody.rotation = cameraTransform.forward * ballRotation;
+			obj.rigidbody.angularVelocity = cameraTransform.forward * ballRotation;
 		}
 	
 	}
