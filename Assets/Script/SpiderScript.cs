@@ -27,6 +27,8 @@ public class SpiderScript : MonoBehaviour
 
 	CharacterController characterController;
 
+	float attackStateMaxTime = 2.0f;
+
 
 	void InitSpider()
 	{
@@ -64,6 +66,7 @@ public class SpiderScript : MonoBehaviour
 
 			}
 			break;
+
 			case SPIDERSTATE.MOVE:
 			{
 				animation.Play ("walk");
@@ -73,6 +76,8 @@ public class SpiderScript : MonoBehaviour
 				if(distance<attackableRange)
 				{
 					spiderState = SPIDERSTATE.ATTACK;
+
+					stateTime = attackStateMaxTime; // come close and no attack 
 				}
 				else
 				{
@@ -84,19 +89,30 @@ public class SpiderScript : MonoBehaviour
 					transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), rotationSpeed * Time.deltaTime);
 				}
 
-
-
-
 			}
 			break;
+
 		case SPIDERSTATE.ATTACK:
 			{
+				stateTime += Time.deltaTime;
+				if (stateTime > attackStateMaxTime)
+				{
+					stateTime = 0.0f;
+					animation.Play ("attack_Melee");
+					animation.PlayQueued("iddle", QueueMode.CompleteOthers);
+				}
+
+				float distance = (target.position - transform.position).magnitude;
+				if(distance > attackableRange)
+				{
+					spiderState = SPIDERSTATE.IDLE;
+				}
 
 			}
 			break;
 		case SPIDERSTATE.DAMAGE:
 			{
-
+				
 			}
 			break;
 		case SPIDERSTATE.DEAD:
@@ -107,6 +123,16 @@ public class SpiderScript : MonoBehaviour
 
 
 		}
+	}
+
+
+	void OnCollisionEnter(Collision collision)
+	{
+		Debug.Log (collision.gameObject.name);
+		if(collision.gameObject.name.Contains("Bomb") == false)
+			return;
+
+		spiderState = SPIDERSTATE.DAMAGE;
 	}
 
 
