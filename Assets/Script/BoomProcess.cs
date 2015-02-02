@@ -19,17 +19,17 @@ public class BoomProcess : MonoBehaviour
 		*/
 
 		//homework add 0202
-		if (collision.gameObject.name.Contains ("Wall")) 
+		if (collision.gameObject.name.Contains ("Plane")) 
 		{
-			GameObject wallParticleObj = Instantiate (wallParticleObject) as GameObject;
-			wallParticleObj.transform.position = transform.position;
+			GameObject particleObj = Instantiate (particleObject) as GameObject;
+			particleObj.transform.position = transform.position;
 		}
 
 		else
 		{
-			GameObject particleObj = Instantiate (particleObject) as GameObject;
+			GameObject wallParticleObj = Instantiate (wallParticleObject) as GameObject;
 			
-			particleObj.transform.position = transform.position;
+			wallParticleObj.transform.position = transform.position;
 		}
 
 		Destroy( gameObject );
