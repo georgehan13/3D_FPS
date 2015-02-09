@@ -12,6 +12,23 @@ public class EnemyManger : MonoBehaviour
 	int spawnCnt = 0;
 	public int maxSpawnCnt = 10;
 
+	GameObject[] enemyPool;
+	int poolSize = 10;
+
+	void Start()
+	{
+		enemyPool = new GameObject[poolSize];
+
+		for(int i=0 ; i<poolSize ; ++i)
+		{
+			enemyPool[i] = Instantiate(enemy) as GameObject;
+
+			enemyPool[i].name = "Enemy_"+ i;
+
+			enemyPool[i].SetActive(false);
+		}
+	}
+
 
 	void Update () 
 	{
@@ -24,12 +41,24 @@ public class EnemyManger : MonoBehaviour
 		{
 			deltaSpawnTime = 0.0f;
 
-			GameObject enemyObj =  Instantiate(enemy) as GameObject;
-			float x = Random.Range(-20.0f, 20.0f);
-			enemyObj.transform.position = new Vector3(x, 0.1f, 20.0f);
+			//GameObject enemyObj =  Instantiate(enemy) as GameObject;
+			for(int i=0; i<poolSize; ++i)
+			{
+				GameObject enemyObj = enemyPool[i];
+				if(enemyObj.activeSelf == true)
+					continue;
+			
 
-			enemyObj.name = "Enemy_" + spawnCnt;
-			++spawnCnt;
+
+				float x = Random.Range(-20.0f, 20.0f);
+				enemyObj.transform.position = new Vector3(x, 0.1f, 20.0f);
+
+				enemyObj.SetActive(true);
+
+				//enemyObj.name = "Enemy_" + spawnCnt;
+				++spawnCnt;
+				break;
+			}
 		}
 	}
 }

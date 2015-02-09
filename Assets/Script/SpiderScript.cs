@@ -25,6 +25,12 @@ public class SpiderScript : MonoBehaviour
 	public GameObject deadObject = null;
 
 
+	void OnEnable()
+	{
+		InitSpider();
+	}
+
+
 	void Start()
 	{
 		target = GameObject.Find("Player").transform;
@@ -41,6 +47,8 @@ public class SpiderScript : MonoBehaviour
 
 	void InitSpider()
 	{
+		helathPoint = 5;
+		stateTime = 0.0f;
 		spiderState = SPIDERSTATE.IDLE;
 		animation.Play ("iddle"); //idle 애니메이션을 플레이하라
 	}
@@ -117,7 +125,8 @@ public class SpiderScript : MonoBehaviour
 		deadObj.transform.eulerAngles = new Vector3(0.0f, rotationY, 0.0f);
 
 
-		Destroy(gameObject);
+		//Destroy(gameObject);
+		gameObject.SetActive(false);
 	}
 
 	
