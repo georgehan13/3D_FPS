@@ -24,6 +24,7 @@ public class SpiderScript : MonoBehaviour
 	public GameObject explosionParticle = null;
 	public GameObject deadObject = null;
 
+	public int score = 10;
 
 	void OnEnable()
 	{
@@ -213,6 +214,8 @@ public class SpiderScript : MonoBehaviour
 				//Destroy(gameObject); //Destroy(누구를없앨건지,없어질 시간)
 				StartCoroutine("DeadProcess");
 				spiderState = SPIDERSTATE.NONE;
+
+				ScoreManager.Instance().myScore += score;
 
 		    }
 			break;
