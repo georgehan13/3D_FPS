@@ -9,23 +9,28 @@ public class CharacterMove : MonoBehaviour
 	public float jumpSpeed = 10.0f;
 	public float gravity = -20.0f;
 
+	PlayerState playerState = null; //1 
+
 	CharacterController characterController = null;
 	float yVelocity = 0.0f;
 
-	// Use this for initialization
-	void Start () 
+	void Start ()
 	{
 		characterController = GetComponent<CharacterController>();
-	}
+
+		playerState = GetComponent <PlayerState>(); //1
 	
-	// Update is called once per frame
-	void Update () 
+	}
+
+	void Update ()
 	{
+		if(playerState.isDead)
+			return; //1 죽을때 움직이지 않게.
+
 		float x = Input.GetAxis("Horizontal");
 		float z = Input.GetAxis("Vertical");
 
-		Vector3 moveDirection = new Vector3(x, 0, z);
-
+		Vector3 moveDirection = new Vector3(x,0,z);
 		moveDirection = cameraTransform.TransformDirection( moveDirection );
 		moveDirection *= moveSpeed;
 
@@ -34,14 +39,14 @@ public class CharacterMove : MonoBehaviour
 			yVelocity = jumpSpeed;
 		}
 
-		yVelocity += (gravity * Time.deltaTime);
+		yVelocity +=( gravity * Time.deltaTime);
 		moveDirection.y = yVelocity;
 
-		characterController.Move (moveDirection * Time.deltaTime);
-
-		if(characterController.collisionFlags == CollisionFlags.Below)
+		characterController.Move ( moveDirection * Time.deltaTime );
+		if( characterController.collisionFlags == CollisionFlags.Below)
 		{
 			yVelocity = 0.0f;
 		}
 	} //End of Update
 }
+	

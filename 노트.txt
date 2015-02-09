@@ -1,0 +1,23 @@
+//유니티 광고 - 벙글, 유니티에즈?????
+// awake(딱1번만 생성되는함수)
+// OnEnable(꺼질때),OnDisable(켜질때)-(오브젝트를 껐다 켤때마다 호출되는함수)
+// Start(씬이바뀔때 한번만 호출)
+// Update 
+//magnitude;(거리계산)
+//Normalize(방향만 뽑아내기,정규화)
+//SimpleMove(
+//Lerp(보관 부드럽게해주는) /Quaternion(사원수 - 가상으로 세축을 한번에 회전하게하는것)
+//transform.rotation = Quaternion.LerP *부드럽게 움직이게함* (transform.rotation.to.rotationSpeed*Time.deltaTime)*어디서부터 어디까지 
+
+//Queued 차례로 (애니메이션)을 호출
+//completeOthers 또는 playNow
+//Contains 포함되있지않으면
+
+
+
+코루틴(Coroutine) - 함수.주 스크립트 흐름 , 한번실행되고 사라짐. / 카메라 흔들기에 사용 
+코루틴 반환값(IEnumerator) 한오브젝트당 코루틴은 한개씩 쓰는게 좋다.
+
+
+
+로컬포지션(LocalPosition) - 상대좌표
