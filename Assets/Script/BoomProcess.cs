@@ -6,9 +6,12 @@ public class BoomProcess : MonoBehaviour
 {
 	public GameObject groundExplosionObject;
 	public GameObject airExplisionObject;
+	public AudioClip clip;
 	
 	void OnCollisionEnter(Collision collision) // 충돌할때
 	{
+		AudioManager.Instance ().PlaySfx(clip); //싱글턴? 폭탄 사운드 재생
+
 		Debug.Log ("Collision Object Name:" + collision.gameObject.name);  //충돌할때 체크
 
 		int collisionLayer = collision.gameObject.layer; //레이어에 접근됨

@@ -23,6 +23,8 @@ public class FireManager : MonoBehaviour {
 	
 	void Update ()
 	{
+		//NGUI UICamera.isOverUI    UICamera.currentTouch.isOverUI
+		//Old Unity GUI    GUIUtility.hotControl
 		if(EventSystem.current.IsPointerOverGameObject()==true)
 		{
 			return;
