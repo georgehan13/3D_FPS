@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using UnityEngine.EventSystems;
+
 public class FireManager : MonoBehaviour {
 
 	public Transform cameraTransform;
@@ -21,6 +23,12 @@ public class FireManager : MonoBehaviour {
 	
 	void Update ()
 	{
+		if(EventSystem.current.IsPointerOverGameObject()==true)
+		{
+			return;
+		}
+
+
 		if(playerState.isDead)
 			return; //02
 
